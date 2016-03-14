@@ -1,5 +1,5 @@
 
 
-sudo apt-get install python-pygame
+An application for looking at your lobsters written with kivy.
 
 
