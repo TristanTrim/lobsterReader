@@ -2,8 +2,8 @@
 
 An application for looking at your lobsters, written with kivy.
 
-
 Todo:
+ - add a settings file for setting the rethinkdb address.
  - change the LobsterListItems to accept all the info from the feed, and display it formatted more proper like.
  - have the width of the text depend on the width of the screen.
  - have a web browser or something open when links are clicked.
