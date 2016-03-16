@@ -25,12 +25,8 @@ class LobsterList(ListView):
         table = db.table('feeditems')
         posts = table.order_by(rethinkdb.desc('updated')).run(conn)
         post_titles = [post['title'] for post in posts]
-#       posts = [post['title'] for post in \
-#                   rethinkdb.db('lobsters').table('feeditems').get_all().order_by(rethinkdb.desc('date')).run(conn) \
-#                       ]
-        #put data into scrollable list
+        #convert data for presentation
         def args_converter(row_index,text):
-            #text = text.rstrip()
             if 'updated_parsed' in text.keys():
                 updated = '{:0>2} {:0>2} {:0>2} {:0>2}:{:0>2}: '.format(*text['updated_parsed'][:5])
             else:
@@ -40,10 +36,11 @@ class LobsterList(ListView):
                 'height': 50,#len(text)/3+20,
                 'valign':'middle',
                 'text_size':(650,50)}#len(text)/3+10)}
-        list_adapter = ListAdapter(data=posts,#_titles,
+        list_adapter = ListAdapter(data=posts,
             args_converter=args_converter,
             cls=LobsterListItem
                 )
+        #put data into scrollable list
         super(LobsterList, self).__init__(
                 adapter=list_adapter)
 
